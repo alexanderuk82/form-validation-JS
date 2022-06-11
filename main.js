@@ -61,8 +61,6 @@ function fieldValidation(e) {
     e.target.classList.remove('border-red-500', 'border')
     e.target.classList.add('border-green-500', 'border')
 
-    messageError.style.opacity = 0
-    messageError.style.visibility = 'hidden'
     messageError.style.display ="none"
 
     fieldPass(e)
@@ -95,7 +93,7 @@ function fieldValidation(e) {
   // !validation for Email
   if (e.target.type === 'email') {
     if (expression.test(e.target.value)) {
-      console.log('email valido')
+    fieldPass()
     } else {
       fieldError(e)
       const okIcon = document.querySelector('.passField')
@@ -183,6 +181,7 @@ function popUpError(message) {
     messageError.appendChild(textError)
   }
 
+  messageError.classList.remove('hidden')
   messageError.style.display = 'block'
 }
 
