@@ -51,19 +51,12 @@ body {
 }
 
 .message {
-  position:sticky;
-  bottom: 0rem;
-  right: 30%;
-  padding:1rem 2rem;
-  z-index: 20;
-  border-radius:0.5rem;
+
   & > *{
     text-transform:uppercase;
   }
   transition: all 0.5s ease-in-out;
-  opacity: 0;
-  visibility: hidden;
-  display:none;
+ 
 }
 
 .spinner {

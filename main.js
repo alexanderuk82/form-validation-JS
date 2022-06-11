@@ -183,8 +183,6 @@ function popUpError(message) {
     messageError.appendChild(textError)
   }
 
-  messageError.style.opacity = 1
-  messageError.style.visibility = 'visible'
   messageError.style.display = 'block'
 }
 
@@ -220,8 +218,6 @@ function popUpSent() {
     messageSent.appendChild(textSent)
   }
 
-  messageSent.style.opacity = 1
-  messageSent.style.visibility = 'visible'
   messageSent.style.display = 'block'
   
  
