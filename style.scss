@@ -54,12 +54,9 @@ body {
   position:absolute;
   bottom: 3rem;
   right: -2rem;
-  background-color: rgb(254, 182, 182);
-  border: 1px solid rgb(247, 73, 73);
   padding:1rem 2rem;
   z-index: 20;
   border-radius:0.5rem;
-  box-shadow: 0 0.5rem 2rem rgba(rgb(252, 146, 146),0.5);
   & > *{
     text-transform:uppercase;
   }
@@ -67,7 +64,6 @@ body {
   opacity: 0;
   visibility: hidden;
   
-
 }
 
 .spinner {

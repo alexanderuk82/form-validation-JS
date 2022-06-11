@@ -8,7 +8,8 @@ const form = document.getElementById('form')
 const submit = document.getElementById('submit')
 
 
-const messageError = document.querySelector('.message')
+const messageError = document.querySelector('.message__error')
+const messageSent = document.querySelector('.message__sent')
 
 //!Startting the site
 
@@ -200,35 +201,6 @@ function popUpError(message) {
 }
 
 
-//* Message was sent (toast notification)
-
-function popUpSent(message) {
-
-  messageError.classList.add('bg-green-300','border', 'border-green-500','shadow-md', 'shadow-green-300/50')
- 
-  const textSent =  document.createElement('p')
-  textSent.innerText = message;
-  textSent.classList.add('errorMessageBox')
-
-  const messageErrorBox = document.querySelectorAll('.errorMessageBox')
-
-
-  if(messageErrorBox.length === 0) {
-
-    messageError.appendChild(textSent)
-
-  }
-
-  messageError.style.opacity = 1;
-  messageError.style.visibility = 'visible';
-  messageError.style.right = '2rem';   
-
-
-}
-
-
-
-
 // *After pass all validation execute this function
 
 function passValidation(e){
@@ -238,26 +210,50 @@ function passValidation(e){
   spinner.classList.remove('hidden')
 
 
- setTimeout(() => {
-
+  setTimeout(() => {
+    
    spinner.classList.add('hidden')  
-   popUpSent('The email was sent successfully')
+   popUpSent()
 
 
    setTimeout(() => {
-
-     messageError.remove()
-      resetForm()
-
-
-   },2000)
-
- } 
+     
+     messageSent.remove()
+     resetForm()
+     
+     
+    },2000)
+    
+  } 
  ,2500)
 
 }
 
 
+//* Message was sent (toast notification)
+
+function popUpSent() {
+
+ 
+  const textSent =  document.createElement('p')
+  textSent.innerText = 'The email was sent successfully';
+  textSent.classList.add('sentMessageBox')
+
+  const messageSentBox = document.querySelectorAll('.sentMessageBox')
+
+
+  if(messageSentBox.length === 0) {
+
+    messageSent.appendChild(textSent)
+
+  }
+
+  messageSent.style.opacity = 1;
+  messageSent.style.visibility = 'visible';
+  messageSent.style.right = '2rem';   
+
+
+}
 
 
 //* Function Reset form
@@ -266,24 +262,9 @@ function passValidation(e){
 function resetForm() {
 
   form.reset()
-  resetBorder()
+ 
   startApp()
+  window.location.reload()
  
 }
-  
-  //*Fucntion to reset border
-  
-  
-  function resetBorder(){
-
-  const inputs = document.querySelectorAll('input')
-  
-        inputs.forEach (input => {
-
-            input.classList.remove('border-green-500')
-            textarea.classList.remove('border-green-500')
-            number.classList.remove('border-green-500')
-         })
-
-  
-  }
+ 
