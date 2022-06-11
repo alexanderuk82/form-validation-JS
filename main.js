@@ -63,7 +63,7 @@ function fieldValidation(e) {
 
     messageError.style.opacity = 0
     messageError.style.visibility = 'hidden'
-    messageError.style.right = '-2rem'
+    messageError.style.display ="none"
 
     fieldPass(e)
   } else {
@@ -185,7 +185,7 @@ function popUpError(message) {
 
   messageError.style.opacity = 1
   messageError.style.visibility = 'visible'
-  messageError.style.right = '2rem'
+  messageError.style.display = 'block'
 }
 
 // *After pass all validation execute this function
@@ -222,7 +222,9 @@ function popUpSent() {
 
   messageSent.style.opacity = 1
   messageSent.style.visibility = 'visible'
-  messageSent.style.right = '2rem'
+  messageSent.style.display = 'block'
+  
+ 
 }
 
 //* Function Reset form

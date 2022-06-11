@@ -8,7 +8,7 @@
 body {
   font-family: sofia-pro, sans-serif;
   font-weight: 400;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .form {
@@ -53,15 +53,17 @@ body {
 }
 
 .message {
-  position: absolute;
-  bottom: 3rem;
-  right: -2rem;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0rem;
+  right: 30%;
   padding: 1rem 2rem;
   z-index: 20;
   border-radius: 0.5rem;
   transition: all 0.5s ease-in-out;
   opacity: 0;
   visibility: hidden;
+  display: none;
 }
 .message > * {
   text-transform: uppercase;
