@@ -1,24 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <script src="https://kit.fontawesome.com/79f329e014.js" crossorigin="anonymous"></script>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Style font -->
-    <link rel="stylesheet" href="https://use.typekit.net/grx0vqz.css">
+    <link rel="stylesheet" href="https://use.typekit.net/grx0vqz.css" />
 
-
+    <!-- Our own style -->
+    <link rel="stylesheet" href="style.css" />
 
     <title>Form- validation</title>
-</head>
-<body>
-      <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-</body>
+  </head>
+  <body class="h-screen">
+    <div
+      class="container p-5 flex flex-col items-center justify-center h-full m-auto"
+    >
+      <div class="title mb-10">
+        <h1 class="text-5xl capitalize font-medium mb-6">get in touch</h1>
+        <p>Our friendly team would love to hear from you!</p>
+      </div>
+      <form action="#" class="form w-4/5" id="form">
+        <div class="field md:flex justify-between">
+          <!-- !First name field -->
+          <div class="field field__name flex flex-col mb-4 md:mb-0 md:w-[48%]">
+            <label for="name" class="font-medium mb-1 text-sm">
+              First name
+             
+              <span > </span>
+                <!-- <i class="fa-solid fa-triangle-exclamation text-red-500"></i> -->
+             
+            
+                <!-- <i class="fa-solid fa-check text-green-500"></i> -->
+              
+            </label>
+
+            <input
+              type="text"
+              placeholder="First name"
+              id="name"
+              class="field__input focus:outline-none name"
+            />
+
+          </div>
+          <!-- !Lastname fied -->
+          <div class="field field__name flex flex-col md:w-[48%]">
+            <label for="surname" class="font-medium mb-1 text-sm">
+              Last name
+              <span > </span>
+            </label>
+            <input
+              type="text"
+              placeholder="Last name"
+              id="surname"
+              class="field__input focus:outline-none surname"
+            />
+          </div>
+        </div>
+
+        <!-- !Email fied -->
+
+        <div class="field flex flex-col">
+          <label for="email" class="font-medium mb-1 text-sm">
+            Email
+            <span > </span>
+          </label>
+          <input
+            type="email"
+            placeholder="your@company.com"
+            id="email"
+            class="field__input focus:outline-none"
+          />
+        </div>
+
+        <!-- !Phone number field -->
+        <div class="field flex flex-col">
+          <label for="phone" class="font-medium mb-1 text-sm">
+            Phone number
+            <span > </span>
+          </label>
+
+          <div class="field__input"  id= 'number'>
+
+                <!-- !Option for countries -->
+
+                <select class='option'>
+                   /
+                    <option value ="UK">UK</option>
+                    <option value ="USA">USA</option> 
+                </select>
+              <input class='focus:outline-none ml-2 w-4/5'
+              type="tel"
+                placeholder="+44(555)000-0000"
+                id="phone"
+                
+              />
+
+          </div>
+
+          </div>
+
+
+          <!-- !Textarea -->
+
+          <div class="field flex flex-col">
+            <label for="email" class="font-medium mb-1 text-sm">
+             Message
+             <span > </span>
+            </label>
+            <textarea name="texarea" id="textarea" cols="30" rows="10" placehoder ="write something..." class='field__input focus:outline-none'></textarea>
+          </div>
+
+
+          <!-- !Aggre check box -->
+          <div class="field flex">
+            <input type="checkbox" id='privacy' name='privacy' value ='accept' class='field__input' required>
+            <label class="ml-3" for="privacy">You agree to our friendly <a href='#' class='underline'>privacy policy</a></label>
+
+          </div>
+
+
+
+          <!-- !Spinner -->
+
+          <div class="spinner hidden">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+
+          <!-- !Submit button -->
+
+          <div class="field flex">
+
+            <button type="submit" class='w-full bg-purple-500 hover:bg-purple-400 p-3 rounded-md text-white mt-3' id='submit'>Send message</button>
+
+          </div>
+        </div>
+      </form>
+
+      <div class="message">
+      </div>
+
+    </div>
+
+
+    <!-- Font aWESOME -->
+
+
+    <!-- Mainjavascript -->
+    <script src='main.js'></script>
+  </body>
 </html>
