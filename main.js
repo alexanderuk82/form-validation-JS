@@ -232,6 +232,6 @@ function popUpSent() {
 function resetForm() {
   form.reset()
 
-  startApp()
   window.location.reload()
+  startApp()
 }
