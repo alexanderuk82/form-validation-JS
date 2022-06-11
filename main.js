@@ -7,9 +7,10 @@ const textarea = document.getElementById('textarea')
 const form = document.getElementById('form')
 const submit = document.getElementById('submit')
 
-
 const messageError = document.querySelector('.message__error')
 const messageSent = document.querySelector('.message__sent')
+
+const expression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 //!Startting the site
 
@@ -28,25 +29,22 @@ function readAllEvents() {
   phone.addEventListener('blur', fieldValidation)
   number.addEventListener('blur', fieldValidation)
   textarea.addEventListener('blur', fieldValidation)
-  
-  
+
   // Submit button
 
   submit.addEventListener('click', passValidation)
-
 }
 
 /* =================================================
  *
  *    ALL THE FUNCTIONS HERE BELOW
-*===================================================*/
+ *===================================================*/
 
 //*Function start the first
 
 function startApp() {
   submit.disabled = true
   submit.classList.add('cursor-not-allowed', 'opacity-40')
-  
 }
 
 //*Function fields validation
@@ -54,80 +52,86 @@ function startApp() {
 function fieldValidation(e) {
   if (e.target.value.length > 0) {
     console.log('validando')
-    
 
-    
-    const erroIcon =  document.querySelector('.errorField')
-    
-    if(erroIcon){
-      
+    const erroIcon = document.querySelector('.errorField')
+
+    if (erroIcon) {
       erroIcon.remove()
-     }
+    }
     e.target.classList.remove('border-red-500', 'border')
     e.target.classList.add('border-green-500', 'border')
-    
-    messageError.style.opacity = 0;
-    messageError.style.visibility = 'hidden';
-    messageError.style.right = '-2rem'; 
-    
-      
-      fieldPass(e)
+
+    messageError.style.opacity = 0
+    messageError.style.visibility = 'hidden'
+    messageError.style.right = '-2rem'
+
+    fieldPass(e)
   } else {
-
     fieldError(e)
-    const okIcon =  document.querySelector('.passField')
+    const okIcon = document.querySelector('.passField')
 
-
-    if(okIcon){
-
-      okIcon.remove() 
+    if (okIcon) {
+      okIcon.remove()
     }
 
     e.target.classList.remove('border-green-500', 'border')
     e.target.classList.add('border-red-500', 'border')
- 
-
     popUpError('Please check the fields, and try again.')
   }
 
-
-  // !validation for Mobile 
+  // !validation for Mobile
 
   if (e.target.type === 'tel') {
     const padre = e.target.parentElement
     if (e.target.value.length > 0) {
       e.target.classList.remove('border-green-500', 'border')
       padre.classList.add('border-green-500', 'border')
-     
     } else {
       e.target.classList.remove('border-red-500', 'border')
       padre.classList.add('border-red-500', 'border')
-    
     }
   }
 
+  // !validation for Email
+  if (e.target.type === 'email') {
+    if (expression.test(e.target.value)) {
+      console.log('email valido')
+    } else {
+      fieldError(e)
+      const okIcon = document.querySelector('.passField')
+
+      if (okIcon) {
+        okIcon.remove()
+      }
+
+      e.target.classList.remove('border-green-500', 'border')
+      e.target.classList.add('border-red-500', 'border')
+      fieldError(e)
+      popUpError('Please enter a correct email address')
+    }
+  }
 
   //!We gonna check if pass all validation
 
-
-  if(names.value !== '' && surname.value !== ''  && email.value !== '' && phone.value !== '' && textarea.value !== ''){
- 
+  if (
+    names.value !== '' &&
+    surname.value !== '' &&
+    expression.test(email.value) &&
+    phone.value !== '' &&
+    textarea.value !== ''
+  ) {
     submit.disabled = false
     submit.classList.remove('cursor-not-allowed', 'opacity-40')
-
-     
-  }
-  else{
+  } else {
     startApp()
   }
-
 }
 
 //* Field error validation (Icon error)
 
 function fieldError(e) {
   // ! Insert the icon in the field target
-  
+
   const errorSpan = e.target.parentElement.children[0].children[0]
 
   const errorIcon = document.createElement('i')
@@ -137,13 +141,12 @@ function fieldError(e) {
     'fa-triangle-exclamation',
     'text-red-500',
     'errorField',
-    )
-    
+  )
+
   //   !We validate just for one time display icon error
   if (errorIcon.classList.contains('errorField')) {
     if (errorSpan.children.length === 0) {
-      errorSpan.appendChild(errorIcon) 
-    
+      errorSpan.appendChild(errorIcon)
     }
   }
 }
@@ -152,119 +155,81 @@ function fieldError(e) {
 
 function fieldPass(e) {
   // ! Insert the icon in the field target
-  
+
   const okSpan = e.target.parentElement.children[0].children[0]
 
   const okIcon = document.createElement('i')
 
-  okIcon.classList.add(
-    'fa-solid',
-    'fa-check',
-    'text-green-500',
-    'passField',
-    )
-    
+  okIcon.classList.add('fa-solid', 'fa-check', 'text-green-500', 'passField')
+
   //   !We validate just for one time display icon error
   if (okIcon.classList.contains('passField')) {
     if (okSpan.children.length === 0) {
-      okSpan.appendChild(okIcon) 
-    
+      okSpan.appendChild(okIcon)
     }
   }
 }
 
-
-
 //* Field error validation (toast notification)
 
 function popUpError(message) {
-
- 
-  const textError =  document.createElement('p')
-  textError.innerText = message;
+  const textError = document.createElement('p')
+  textError.innerText = message
   textError.classList.add('errorMessageBox')
 
   const messageErrorBox = document.querySelectorAll('.errorMessageBox')
 
-
-  if(messageErrorBox.length === 0) {
-
+  if (messageErrorBox.length === 0) {
     messageError.appendChild(textError)
-
   }
 
-  messageError.style.opacity = 1;
-  messageError.style.visibility = 'visible';
-  messageError.style.right = '2rem';   
-
-
+  messageError.style.opacity = 1
+  messageError.style.visibility = 'visible'
+  messageError.style.right = '2rem'
 }
-
 
 // *After pass all validation execute this function
 
-function passValidation(e){
-  e.preventDefault();
+function passValidation(e) {
+  e.preventDefault()
 
-  const spinner = document.querySelector('.spinner');
+  const spinner = document.querySelector('.spinner')
   spinner.classList.remove('hidden')
 
-
   setTimeout(() => {
-    
-   spinner.classList.add('hidden')  
-   popUpSent()
+    spinner.classList.add('hidden')
+    popUpSent()
 
-
-   setTimeout(() => {
-     
-     messageSent.remove()
-     resetForm()
-     
-     
-    },2000)
-    
-  } 
- ,2500)
-
+    setTimeout(() => {
+      messageSent.remove()
+      resetForm()
+    }, 2000)
+  }, 2500)
 }
-
 
 //* Message was sent (toast notification)
 
 function popUpSent() {
-
- 
-  const textSent =  document.createElement('p')
-  textSent.innerText = 'The email was sent successfully';
+  const textSent = document.createElement('p')
+  textSent.innerText = 'The email was sent successfully'
   textSent.classList.add('sentMessageBox')
 
   const messageSentBox = document.querySelectorAll('.sentMessageBox')
 
-
-  if(messageSentBox.length === 0) {
-
+  if (messageSentBox.length === 0) {
     messageSent.appendChild(textSent)
-
   }
 
-  messageSent.style.opacity = 1;
-  messageSent.style.visibility = 'visible';
-  messageSent.style.right = '2rem';   
-
-
+  messageSent.style.opacity = 1
+  messageSent.style.visibility = 'visible'
+  messageSent.style.right = '2rem'
 }
-
 
 //* Function Reset form
 
-
 function resetForm() {
-
   form.reset()
- 
+
   startApp()
   window.location.reload()
- 
 }
- 
