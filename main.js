@@ -61,10 +61,11 @@ function fieldValidation(e) {
     e.target.classList.remove('border-red-500', 'border')
     e.target.classList.add('border-green-500', 'border')
 
-    messageError.style.display ="none"
+    messageError.style.display = 'none'
 
     fieldPass(e)
   } else {
+    messageError.innerText = ''
     fieldError(e)
     const okIcon = document.querySelector('.passField')
 
@@ -93,8 +94,10 @@ function fieldValidation(e) {
   // !validation for Email
   if (e.target.type === 'email') {
     if (expression.test(e.target.value)) {
-    fieldPass()
+      fieldPass()
     } else {
+      messageError.innerText = ''
+
       fieldError(e)
       const okIcon = document.querySelector('.passField')
 
@@ -218,8 +221,6 @@ function popUpSent() {
   }
 
   messageSent.style.display = 'block'
-  
- 
 }
 
 //* Function Reset form
